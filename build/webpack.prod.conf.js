@@ -95,6 +95,14 @@ var webpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
+      }, {
+        // copy package.json for heroku
+        from: path.resolve(__dirname, '../package.json'),
+        to: config.build.assetsRoot,
+      }, {
+        // copy server files
+        from: path.resolve(__dirname, '../server.js'),
+        to: config.build.assetsRoot,
       }
     ])
   ]
