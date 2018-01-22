@@ -1,7 +1,7 @@
 {
   "name": "showcase",
   "version": "1.0.0",
-  "description": "a showcase of Dustin Brink's wendevelopment projects",
+  "description": "a showcase of Dustin Brink's web development projects",
   "author": "Dustin Brink",
   "private": true,
   "scripts": {

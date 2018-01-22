@@ -1,0 +1,10 @@
+{
+  "name": "Showcase",
+  "version": "1.0.0",
+  "description": "A Showcase my webdevelopment",
+  "author": "Dustin Brink",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install express"
+  }
+ }
