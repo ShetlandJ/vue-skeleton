@@ -17,6 +17,12 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 
+# run server local
+npm run server-test
+
+# deploy to heroku (deploys dist folder after build)
+npm run deploy
+
 # run unit tests
 npm run unit
 
