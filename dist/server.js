@@ -6,7 +6,7 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 
 express()
-  .use(express.static(path.join(__dirname, 'dist'))) // Serve static from /dist folder
+  .use(express.static(path.join(__dirname, '.'))) // Serve static from /dist folder
   // .set('views', path.join(__dirname, 'views'))
   // .set('view engine', 'ejs')
   // .get('/', (req, res) => res.render('pages/index'))
