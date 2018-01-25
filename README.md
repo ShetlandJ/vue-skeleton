@@ -24,11 +24,14 @@ npm run dev
 # build for production with minification
 npm run build
 
+# start local server
+npm start
+
+# start local production server (after build) (windows)
+npm run start-prod
+
 # build for production and view the bundle analyzer report
 npm run build --report
-
-# run server local
-npm run server-test
 
 # deploy to heroku (deploys dist folder after build)
 npm run deploy
