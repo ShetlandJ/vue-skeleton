@@ -20,10 +20,42 @@ const LOGS = path.join(ROOT, 'logs');
 let STATIC = path.join(ROOT, 'static');
 // let INDEX = ROOT;
 
+// config logs
+const logCombined = [
+  new winston.transports.File({
+    filename: path.join(LOGS, 'combined.log'),
+    tailable: true,
+    zippedArchive: true,
+    maxsize: 102400,
+    maxFiles: 30,
+    colorize: true,
+  }),
+];
+
+const logErrors = [
+  new winston.transports.File({
+    filename: path.join(LOGS, 'errors.log'),
+    tailable: true,
+    zippedArchive: true,
+    maxsize: 102400,
+    maxFiles: 30,
+    colorize: true,
+  }),
+];
+
+const logDev = [
+  new winston.transports.Console({
+    json: true,
+    colorize: true,
+  }),
+];
+
 // Set development vars
 if (ENV !== 'production') {
   STATIC = path.join(ROOT, 'dist', 'static');
   // INDEX = path.join(ROOT, 'dist');
+  logCombined.join(logDev);
+  logErrors.join(logDev);
 }
 
 // touch new folders
@@ -61,20 +93,7 @@ cluster((worker) => {
 
     // use winston for logging
     .use(expressWinston.logger({
-      transports: [
-        new winston.transports.Console({
-          json: true,
-          colorize: true,
-        }),
-        new winston.transports.File({
-          filename: path.join(LOGS, 'combined.log'),
-          tailable: true,
-          zippedArchive: true,
-          maxsize: 102400,
-          maxFiles: 30,
-          colorize: true,
-        }),
-      ],
+      transports: logCombined,
     }))
 
     // use connect history api for SPA
@@ -94,20 +113,7 @@ cluster((worker) => {
 
     // winston error logger makes sense AFTER the router
     .use(expressWinston.errorLogger({
-      transports: [
-        new winston.transports.Console({
-          json: true,
-          colorize: true,
-        }),
-        new winston.transports.File({
-          filename: path.join(LOGS, 'errors.log'),
-          tailable: true,
-          zippedArchive: true,
-          maxsize: 102400,
-          maxFiles: 30,
-          colorize: true,
-        }),
-      ],
+      transports: logErrors,
     }))
 
     // listen on the given port

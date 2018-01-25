@@ -14,7 +14,9 @@ if (ENV !== 'production') {
 module.exports = express.Router()
   .use((req, res, next) => {
     // log each request to the console
-    console.log(req.method, req.url);
+    if (ENV !== 'production') {
+      console.log(req.method, req.url);
+    }
 
     // continue doing what we were doing and go to the route
     next();
@@ -29,8 +31,7 @@ module.exports = express.Router()
   // for SPA redirect all else to index (app routes)
   .get('/*', (req, res, next) => {
     if (/\/[^.]*$/.test(req.url)) {
-      console.log(path.join(ROOT, 'index.html'));
-      res.sendfile('index.html', { root: ROOT });
+      res.sendFile('index.html', { root: ROOT });
     } else {
       next();
     }
