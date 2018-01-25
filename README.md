@@ -1,6 +1,16 @@
-# showcase
+# Vue-Skeleton
 
-> a showcase of Dustin Brink's wendevelopment projects
+> A Vue app, with Express Node sever for use on Heroku
+- Node server clustering
+- winston server logging
+- helmet server header security
+- gzip compression
+- express routing and sing page app routing
+- ES 6
+- Vue & Vuex
+- Bootstrap styling
+- Karma Mocha tests with Sion
+- Webpack 
 
 ## Build Setup
 
