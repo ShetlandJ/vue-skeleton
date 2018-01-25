@@ -2,7 +2,6 @@
 
 const express = require('express');
 const path = require('path');
-// const history = require('connect-history-api-fallback');
 const cluster = require('express-cluster');
 const compression = require('compression');
 const winston = require('winston');
@@ -18,7 +17,6 @@ const ROOT = path.join(__dirname, '..');
 const LOGS = path.join(ROOT, 'logs');
 
 let STATIC = path.join(ROOT, 'static');
-// let INDEX = ROOT;
 
 // config logs
 const logCombined = [
@@ -53,7 +51,6 @@ const logDev = [
 // Set development vars
 if (ENV !== 'production') {
   STATIC = path.join(ROOT, 'dist', 'static');
-  // INDEX = path.join(ROOT, 'dist');
   logCombined.join(logDev);
   logErrors.join(logDev);
 }
@@ -95,15 +92,6 @@ cluster((worker) => {
     .use(expressWinston.logger({
       transports: logCombined,
     }))
-
-    // use connect history api for SPA
-    // .use(history({
-    //   rewrites: [
-    //     { from: /\/error/, to: '/error' },
-    //   ],
-    //   index: path.join(INDEX, 'index.html'),
-    //   verbose: true,
-    // }))
 
     // use express routing
     .use('/', router)
