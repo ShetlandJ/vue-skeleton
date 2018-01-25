@@ -12,6 +12,10 @@
 - Karma Mocha tests with Sion
 - Webpack 
 
+> Coming soon
+- Mongo
+- GraphQL
+
 ## Build Setup
 
 ``` bash
