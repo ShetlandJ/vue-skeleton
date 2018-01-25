@@ -101,8 +101,8 @@ var webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsRoot,
       }, {
         // copy server files
-        from: path.resolve(__dirname, '../server.js'),
-        to: config.build.assetsRoot,
+        from: path.resolve(__dirname, '../server'),
+        to: path.join(config.build.assetsRoot, 'server'),
       }
     ])
   ]
