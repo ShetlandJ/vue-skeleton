@@ -2,10 +2,10 @@
 
 > A Vue app, with Express Node sever for use on Heroku
 - Node server clustering
-- winston server logging
-- helmet server header security
+- Winston server logging
+- Helmet server header security
 - gzip compression
-- express routing and sing page app routing
+- Express routing and single page app routing for all other requests
 - ES 6
 - Vue & Vuex
 - Bootstrap styling
