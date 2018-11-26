@@ -10,6 +10,8 @@ const helmet = require('helmet');
 const fs = require('fs');
 const favicon = require('serve-favicon');
 const router = require('./router');
+const mysql = require('mysql');
+const config = require('../config/db');
 
 const ENV = process.env.NODE_ENV || 'development';
 const PORT = process.env.PORT || 5000;
@@ -17,6 +19,16 @@ const ROOT = path.join(__dirname, '..');
 const LOGS = path.join(ROOT, 'logs');
 
 let STATIC = path.join(ROOT, 'static');
+
+console.log(config);
+
+
+db = mysql.createConnection ({
+  host: config.host,
+  user: config.user,
+  password: config.password,
+  database: config.db
+});
 
 // config logs
 const logCombined = [

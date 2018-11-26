@@ -1,5 +1,5 @@
-// router.js
 const express = require('express');
+const router = new express.Router();
 const path = require('path');
 
 const ENV = process.env.NODE_ENV || 'development';
@@ -11,29 +11,14 @@ if (ENV !== 'production') {
   ROOT = path.join(ROOT, 'dist');
 }
 
-module.exports = express.Router()
-  .use((req, res, next) => {
-    // log each request to the console
-    if (ENV !== 'production') {
-      console.log(req.method, req.url);
-    }
+router.use('/register', require('./components/signUp/signUpRoutes'));
 
-    // continue doing what we were doing and go to the route
+router.get('/*', (req, res, next) => {
+  if (/\/[^.]*$/.test(req.url)) {
+    res.sendFile('index.html', { root: ROOT });
+  } else {
     next();
-  })
+  }
+});
 
-  // acutall backend routes should go here
-  .get('/error', (req, res, next) => {
-    // here we cause an error in the pipeline so we see express-winston in action.
-    next(new Error('This is an error and it should be logged to the console'));
-  })
-
-  // for SPA redirect all else to index (app routes)
-  .get('/*', (req, res, next) => {
-    if (/\/[^.]*$/.test(req.url)) {
-      res.sendFile('index.html', { root: ROOT });
-    } else {
-      next();
-    }
-  })
-;
+module.exports = router;
